@@ -12,16 +12,39 @@
 
 import sys
 input= sys.stdin.readline
-
+ 
 n, m= map(int, input().split())
 map = [list(map(int, input().split())) for _ in range(n)] #2차원 배열
 visitNum= [[False] * m for _ in range(n)] # 방문횟수
 
 cnt =0
 maxValue= 0
-for i in range(n):
-    for j in range(m):
-        if map[i][j] ==1 and visitNum[i][j] ==False:
-            #전체 그림 갯수 +1
-            #Bfs > 그림크기 구해주고
-            #최댓값 갱신
+
+dy=[0, 1, 0, -1]
+dx=[1, 0, -1, 0]
+
+def bfs(y,x):
+    rs=1
+    q= [(y,x)]
+    while q:
+        ey, ex= q.pop()
+        for k in range(4):
+            ny= ey + dy[k]
+            nx= ex + dx[k]
+            if 0<=ny<n and 0<=nx<m:
+                if map[ny][nx]==1 and visitNum[ny][nx]== False:
+                    rs+=1
+                    visitNum = True
+                    q.append((ny, nx))
+    return rs
+
+for j in range(n):
+    for i in range(m):
+        if map[j][i] ==1 and visitNum[j][i] == False:
+            visitNum[j][i]==True
+            # 전체 그림갯수 +1
+            cnt+=1
+            maxValue = max(maxValue, bfs(j,i))
+
+print(visitNum)
+print(maxValue)
