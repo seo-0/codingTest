@@ -1,4 +1,3 @@
-
 nums=[]
 def solution(nums):
     unique_pokemon = len(set(nums))
