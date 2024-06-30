@@ -14,14 +14,11 @@ def solution(board, moves):
                 board[row][column] = 0 # 제거했으니까 0으로!
                 #basket.append(doll) -> ** 여기에 바로 추가하는게 아니라! 같은지 다른지 확인하고 같으면 제거 해야하니깐 추가로직이 필요해서 아래에 조건문 넣어야함!!!
                 #바구니에 인형 추가하고, 연속된지 확인
-                if basket and basket[-1] == doll:
-                    basket.pop()
+                if basket and basket[-1] == doll: #종류가 같으면
+                    basket.pop() #종류가 같아서 터트려지고 사라짐
                     result += 2
                 else:
                     basket.append(doll)
-                break #얘가 있고 없고 차이가 매우 중요! 
-                
+                break #얘가 있고 없고 차이가 매우 중요! 가장 위의 인형을 찾았으므로 다음 Move로 넘어가는 역할임!     
           #  basket = board[min()][move] -> 이게 아니라 반복문으로 요소에 접근해야함 한번에 최소값으로 접근하는게 아님!
-    
-    
     return result
